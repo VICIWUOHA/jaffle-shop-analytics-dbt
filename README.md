@@ -1,4 +1,4 @@
-Jaffle Shop Analytics DBT project
+## **Jaffle Shop Analytics DBT project**
 
 ### This Project was built off the training on DBT Fundamentals.
 
