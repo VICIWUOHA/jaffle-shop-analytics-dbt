@@ -5,7 +5,7 @@ models:
     description: One Unique customer per row
     columns:
       - name: customer_id
-        descriprion: Primary Key for stage customers
+        description: Primary Key for stage customers
         tests:
           - unique
           - not_null
