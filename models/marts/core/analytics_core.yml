@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Shows all our customers with their patronage history
+    columns:
+      - name: customer_id
+        description: Primary Key for valid customers
+        tests:
+          - unique
+          - not_null
+      - name: lifetime_value
+        description: Total Amount the customer has spent in our store
+
+
+  - name: fct_orders
+    description: Actual orders for each date with multiple payments combined for same order
+    columns:
+      - name: order_id
+        description: Primary key for successful orders
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Unique Identifier for a customer who placed an order
+        tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+
+      - name: order_date
+        description: date when order was placed and payment made successfully
+
+      - name: amount
+        description: total amount payed for an order
+
+  - name: fct_failed_orders
+    description: failed order transactions where payments on stripe failed
+    columns:
+      - name: order_id
+        description: Primary Key for failed orders
+        tests:
+         - unique
+         - not_null
+         - relationships:
+            to: ref('stg_payments')
+            field: order_id
+      
+      - name: customer_id
+        description: id of customer whose order failed
+        tests:
+         - relationships:
+            to: ref('stg_customers')
+            field: customer_id
+
+      
