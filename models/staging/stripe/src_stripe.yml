@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: stripe
     description: Source schema for all payments
-    database: raw
+    database: dbt-tutorial
     schema: stripe
     tables:
       - name: payment
