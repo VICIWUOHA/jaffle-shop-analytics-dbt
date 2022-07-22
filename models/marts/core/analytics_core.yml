@@ -54,4 +54,13 @@ models:
             to: ref('stg_customers')
             field: customer_id
 
+  - name: all_dates
+    description: Shows all dates since the history of the dataset. Works on either staging or core  model groups.
+    columns:
+      - name: date_day
+        description: Day of the week in datetime format
+        tests:
+          - unique
+          - not_null
+
       
